@@ -1,0 +1,38 @@
+{
+  "name": "vite-oss-upload",
+  "version": "1.0.1",
+  "type": "module",
+  "author": "chendaleiQ",
+  "description": "Upload the production files bundled in the project to Ali OSS",
+  "homepage": "https://github.com/xiaweiss/vite-plugin-ali-oss",
+  "repository": "https://github.com/xiaweiss/vite-plugin-ali-oss",
+  "license": "MIT",
+  "types": "index.d.ts",
+  "main": "index.js",
+  "keywords": [
+    "vite-plugin",
+    "ali-oss",
+    "aliyun"
+  ],
+  "scripts": {
+    "example:build": "pnpm -C example build",
+    "changelog": "conventional-changelog -i CHANGELOG.md -s"
+  },
+  "dependencies": {
+    "ali-oss": "^6.19.0",
+    "glob": "^10.3.10",
+    "picocolors": "^1.0.0"
+  },
+  "devDependencies": {
+    "conventional-changelog-cli": "2.2.2"
+  },
+  "peerDependencies": {
+    "vite": "^5.0.0"
+  },
+  "publishConfig": {
+    "@xiaweiss:registry": "https://npm.pkg.github.com"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
