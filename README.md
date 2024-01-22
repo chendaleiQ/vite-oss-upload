@@ -6,7 +6,8 @@ vite-oss-upload
 # 功能特性
 
 效果预览：
-<img width="905" alt="image" src="https://github.com/chendaleiQ/vite-oss-upload/assets/145096764/24cb2113-0cab-47cb-92b7-11e05de689f1">
+
+<img width="800" alt="image" src="https://github.com/chendaleiQ/vite-oss-upload/assets/145096764/dedc6423-c4f3-4518-ba02-43ed2582f672">
 
 
 # 安装
