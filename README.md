@@ -6,6 +6,8 @@ vite-oss-upload
 # 功能特性
 
 效果预览：
+<img width="905" alt="image" src="https://github.com/chendaleiQ/vite-oss-upload/assets/145096764/24cb2113-0cab-47cb-92b7-11e05de689f1">
+
 
 # 安装
 
@@ -51,8 +53,7 @@ npm run build
 
 | options         | description                                             | type    | default       |
 |-----------------|---------------------------------------------------------|---------|---------------|
-| dist            | 需要上传到oss上的给定文件目录                                          | string  |               |
-| region          | 阿里云 oss 地域                                           | string  |               |
+| dist            | 需要上传到oss上的给定文件目录                               | string  |               |
 | region          | 阿里云 oss 地域                                           | string  |               |
 | accessKeyId     | 阿里云 oss 访问 ID                                        | string  |               |
 | accessKeySecret | 阿里云 oss 访问密钥                                       | string  |               |
