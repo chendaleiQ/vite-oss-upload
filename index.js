@@ -1,9 +1,9 @@
-import colors from 'colors-console'
-import { globSync } from 'glob'
-import path from 'path'
-import OSS from 'ali-oss'
+const colors = require('colors-console')
+const { globSync } = require('glob')
+const path = require('path')
+const OSS = require('ali-oss')
+const { normalizePath } = require('vite')
 
-import { normalizePath } from 'vite'
 
 const handleIgnore = (ignore, ssrServer, ssrClient) => {
   if (ignore === undefined) return ''
