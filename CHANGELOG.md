@@ -9,6 +9,7 @@
 * fix:package命令 ([a9c2c9c](https://github.com/chendaleiQ/vite-oss-upload/commit/a9c2c9c))
 * fix:兼容不同模块 ([255ded1](https://github.com/chendaleiQ/vite-oss-upload/commit/255ded1))
 * fix:导入 ([5e6f498](https://github.com/chendaleiQ/vite-oss-upload/commit/5e6f498))
+* fix:导出 ([a4e7f8e](https://github.com/chendaleiQ/vite-oss-upload/commit/a4e7f8e))
 * init ([1f77de2](https://github.com/chendaleiQ/vite-oss-upload/commit/1f77de2))
 * Update README.md ([62d8707](https://github.com/chendaleiQ/vite-oss-upload/commit/62d8707))
 * Update README.md ([1866226](https://github.com/chendaleiQ/vite-oss-upload/commit/1866226))

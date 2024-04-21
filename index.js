@@ -104,7 +104,7 @@ module.exports = function vitePluginAliOss(options) {
         const duration = (new Date().getTime() - startTime) / 1000
 
         console.log('')
-        console.log(color.green(`ali oss upload complete ^_^, cost ${duration.toFixed(2)}s`))
+        console.log(colors('green', `ali oss upload complete ^_^, cost ${duration.toFixed(2)}s`))
         console.log('')
       }
     }
