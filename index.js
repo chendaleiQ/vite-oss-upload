@@ -17,7 +17,7 @@ const handleIgnore = (ignore, ssrServer, ssrClient) => {
   }
 }
 
-export default function vitePluginAliOss(options) {
+module.exports = function vitePluginAliOss(options) {
   let baseConfig = '/'
   let buildConfig = {}
   baseConfig = options.dist
