@@ -1,4 +1,4 @@
-import color from 'picocolors'
+import colors from 'colors-console'
 import { globSync } from 'glob'
 import path from 'path'
 import OSS from 'ali-oss'
@@ -72,7 +72,7 @@ export default function vitePluginAliOss(options) {
 
           const completePath = ossFilePath
 
-          const output = `${buildConfig.outDir + filePath} => ${color.green(completePath)}`
+          const output = `${buildConfig.outDir + filePath} => ${colors('green', completePath)}`
 
           if (options.test) {
             console.log(`test upload path: ${output}`)
@@ -87,7 +87,7 @@ export default function vitePluginAliOss(options) {
           } else {
             try {
               await client.head(ossFilePath)
-              console.log(`${color.gray('files exists')}: ${output}`)
+              console.log(`${colors('grey', 'files exists')}: ${output}`)
             } catch (error) {
               if (error.code === 'NoSuchKey') {
                 await client.put(ossFilePath, fileFullPath, {
