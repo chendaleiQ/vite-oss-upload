@@ -14,7 +14,6 @@
     "aliyun"
   ],
   "scripts": {
-    "example:build": "pnpm -C example build",
     "changelog": "conventional-changelog -i CHANGELOG.md -s"
   },
   "dependencies": {
