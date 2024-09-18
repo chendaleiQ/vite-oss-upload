@@ -8,6 +8,9 @@ const { normalizePath } = require('vite')
 const handleIgnore = (ignore, ssrServer, ssrClient) => {
   if (ignore === undefined) return ''
   if (ignore) {
+    if(ignore instanceof Array){
+      return ignore
+    }
     if (ssrClient) {
       return ['**/ssr-manifest.json', '**/*.html', ...ignore]
     }
