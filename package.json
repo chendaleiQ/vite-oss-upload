@@ -1,6 +1,6 @@
 {
   "name": "vite-oss-upload",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "author": "chendaleiQ",
   "description": "Upload the production files bundled in the project to Ali OSS",
   "homepage": "https://github.com/chendaleiQ/vite-oss-upload",
