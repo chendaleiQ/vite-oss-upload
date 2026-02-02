@@ -1,3 +1,14 @@
+## 1.1.0 (2025-02-02)
+
+* feat: 支持 Vite 6.x
+* feat: 添加 buildEnd 钩子，构建失败时跳过上传，避免上传不完整的文件到 OSS
+* fix: 修复 handleIgnore 函数当 ignore 为字符串时可能返回 undefined 的问题
+* fix: 修复 README 示例代码中函数名不一致的问题
+* chore: 添加 package.json exports 字段，更好支持现代打包工具
+* chore: 导出 Options 类型接口
+
+
+
 ## <small>1.0.8 (2024-09-18)</small>
 
 * feat:changelog ([ec9c26c](https://github.com/chendaleiQ/vite-oss-upload/commit/ec9c26c))

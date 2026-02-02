@@ -6,23 +6,35 @@ const {normalizePath} = require('vite')
 
 
 const handleIgnore = (ignore, ssrServer, ssrClient) => {
-    if (ignore === undefined) return ''
-    if (ignore) {
-        if (ignore instanceof Array) {
-            return ignore
-        }
-        if (ssrClient) {
-            return ['**/ssr-manifest.json', '**/*.html', ...ignore]
-        }
-        if (ssrServer) {
-            return ['**']
-        }
+    // SSR server 模式忽略所有文件
+    if (ssrServer) {
+        return ['**']
     }
+
+    // 将 ignore 统一转换为数组
+    let ignoreList = []
+    if (ignore === undefined) {
+        ignoreList = ['**/*.html']  // 默认忽略 html 文件
+    } else if (ignore === '') {
+        ignoreList = []  // 空字符串表示不忽略任何文件
+    } else if (Array.isArray(ignore)) {
+        ignoreList = ignore
+    } else {
+        ignoreList = [ignore]  // 字符串转数组
+    }
+
+    // SSR client 模式额外忽略 ssr-manifest.json 和 html
+    if (ssrClient) {
+        return ['**/ssr-manifest.json', '**/*.html', ...ignoreList]
+    }
+
+    return ignoreList
 }
 
 module.exports = function vitePluginAliOss(options) {
     let baseConfig = '/'
     let buildConfig = {}
+    let buildError = null
     baseConfig = options.dist
 
     if (options.enabled !== undefined && !options.enabled) {
@@ -37,13 +49,29 @@ module.exports = function vitePluginAliOss(options) {
             buildConfig = config.build
         },
 
+        // 捕获构建错误，防止构建失败时仍然上传不完整的文件
+        buildEnd(error) {
+            if (error) {
+                buildError = error
+            }
+        },
+
         closeBundle: {
             sequential: true,
             order: 'post',
             async handler() {
+                // 如果构建过程中发生错误，跳过上传，避免上传不完整的文件到 OSS
+                if (buildError) {
+                    console.log('')
+                    console.log(colors('red', 'Build failed, skip uploading to ali oss'))
+                    console.log('')
+                    return
+                }
+
                 const outDirPath = normalizePath(path.resolve(normalizePath(buildConfig.outDir)))
 
                 const createOssOption = Object.assign({}, options)
+                delete createOssOption.dist
                 delete createOssOption.overwrite
                 delete createOssOption.ignore
                 delete createOssOption.headers

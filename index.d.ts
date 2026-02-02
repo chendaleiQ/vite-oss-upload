@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite'
 
-interface Options {
+export interface Options {
   dist: string
   /** ali cloud oss region */
   region: string
@@ -36,6 +36,6 @@ interface Options {
   timeout?: string | number
 }
 
-declare function vitePluginAliOss(options: Options): Plugin
+declare function vitePluginAliOss(options: Options): Plugin | undefined
 
-export { vitePluginAliOss as default }
+export default vitePluginAliOss
