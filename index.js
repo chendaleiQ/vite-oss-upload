@@ -14,7 +14,7 @@ const handleIgnore = (ignore, ssrServer, ssrClient) => {
     // 将 ignore 统一转换为数组
     let ignoreList = []
     if (ignore === undefined) {
-        ignoreList = ['**/*.html']  // 默认忽略 html 文件
+        ignoreList = []  // 默认上传所有文件，包括 index.html
     } else if (ignore === '') {
         ignoreList = []  // 空字符串表示不忽略任何文件
     } else if (Array.isArray(ignore)) {

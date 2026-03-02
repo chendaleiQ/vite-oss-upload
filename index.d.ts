@@ -12,7 +12,7 @@ export interface Options {
   bucket: string
   /** If the file already exists, whether to skip upload. Default false */
   overwrite?: boolean
-  /** Ignore file rules. If you use empty string `''`, no files will be ignored. Default '\*\*\/\*.html' */
+  /** Ignore file rules. If you use empty string `''`, no files will be ignored. Default: upload all files including index.html */
   ignore?: string[] | string
   /** Request headers setting */
   headers?: any
