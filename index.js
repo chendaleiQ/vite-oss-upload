@@ -5,6 +5,15 @@ const OSS = require('ali-oss')
 const {normalizePath} = require('vite')
 
 
+const normalizeDistPrefix = (dist) => {
+    const normalized = normalizePath(String(dist || ''))
+    if (!normalized || normalized === '/') {
+        return ''
+    }
+    const trimmed = normalized.replace(/^\/+|\/+$/g, '')
+    return trimmed ? `${trimmed}/` : ''
+}
+
 const handleIgnore = (ignore, ssrServer, ssrClient) => {
     // SSR server 模式忽略所有文件
     if (ssrServer) {
@@ -31,18 +40,17 @@ const handleIgnore = (ignore, ssrServer, ssrClient) => {
     return ignoreList
 }
 
-module.exports = function vitePluginAliOss(options) {
-    let baseConfig = '/'
+module.exports = function viteOssUpload(options) {
+    const distPrefix = normalizeDistPrefix(options.dist)
     let buildConfig = {}
     let buildError = null
-    baseConfig = options.dist
 
     if (options.enabled !== undefined && !options.enabled) {
         return
     }
 
     return {
-        name: 'vite-plugin-ali-oss',
+        name: 'vite-oss-upload',
         enforce: 'post',
         apply: 'build',
         configResolved(config) {
@@ -51,9 +59,7 @@ module.exports = function vitePluginAliOss(options) {
 
         // 捕获构建错误，防止构建失败时仍然上传不完整的文件
         buildEnd(error) {
-            if (error) {
-                buildError = error
-            }
+            buildError = error || null
         },
 
         closeBundle: {
@@ -63,7 +69,7 @@ module.exports = function vitePluginAliOss(options) {
                 // 如果构建过程中发生错误，跳过上传，避免上传不完整的文件到 OSS
                 if (buildError) {
                     console.log('')
-                    console.log(colors('red', 'Build failed, skip uploading to ali oss'))
+                    console.log(colors('red', 'vite-oss-upload: build failed, skip uploading to OSS'))
                     console.log('')
                     return
                 }
@@ -90,7 +96,7 @@ module.exports = function vitePluginAliOss(options) {
 
                 console.log('')
                 console.log(
-                    `ali oss upload start${ssrClient ? ' (ssr client)' : ssrServer ? ' (ssr server)' : ''}`
+                    `vite-oss-upload: upload start${ssrClient ? ' (ssr client)' : ssrServer ? ' (ssr server)' : ''}`
                 )
                 console.log('')
 
@@ -99,7 +105,7 @@ module.exports = function vitePluginAliOss(options) {
                 for (const fileFullPath of files) {
                     const filePath = normalizePath(fileFullPath).split(`${outDirPath}/`)[1]
 
-                    const ossFilePath = baseConfig + filePath
+                    const ossFilePath = `${distPrefix}${filePath}`
 
                     const completePath = ossFilePath
 
@@ -126,7 +132,7 @@ module.exports = function vitePluginAliOss(options) {
                                 })
                                 console.log(`upload complete: ${output}`)
                             } else {
-                                throw new Error(error)
+                                throw error
                             }
                         }
                     }
@@ -135,7 +141,7 @@ module.exports = function vitePluginAliOss(options) {
                 const duration = (new Date().getTime() - startTime) / 1000
 
                 console.log('')
-                console.log(colors('green', `ali oss upload complete ^_^, cost ${duration.toFixed(2)}s`))
+                console.log(colors('green', `vite-oss-upload: upload complete ^_^, cost ${duration.toFixed(2)}s`))
                 console.log('')
             }
         }

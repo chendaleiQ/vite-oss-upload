@@ -18,7 +18,7 @@ export interface Options {
   headers?: any
   /** Only test path, no files upload. Default false */
   test?: boolean
-  /** Enable the ali oss plugin. Default true */
+  /** Enable vite-oss-upload plugin. Default true */
   enabled?: boolean
   /** The temporary Security Token Service (STS) token used to access OSS. */
   stsToken?: string
@@ -36,6 +36,6 @@ export interface Options {
   timeout?: string | number
 }
 
-declare function vitePluginAliOss(options: Options): Plugin | undefined
+declare function viteOssUpload(options: Options): Plugin | undefined
 
-export default vitePluginAliOss
+export default viteOssUpload

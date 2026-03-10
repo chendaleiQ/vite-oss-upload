@@ -12,7 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/chendaleiQ/vite-oss-upload.git"
   },
+  "bugs": {
+    "url": "https://github.com/chendaleiQ/vite-oss-upload/issues"
+  },
   "license": "MIT",
+  "sideEffects": false,
   "types": "index.d.ts",
   "main": "index.js",
   "exports": {
@@ -23,20 +27,20 @@
     }
   },
   "keywords": [
+    "vite",
     "vite-plugin",
+    "vite-oss-upload",
+    "oss",
     "ali-oss",
-    "aliyun"
+    "aliyun",
+    "aliyun-oss",
+    "upload",
+    "cdn"
   ],
-  "scripts": {
-    "changelog": "conventional-changelog -i CHANGELOG.md -s"
-  },
   "dependencies": {
     "ali-oss": "^6.19.0",
     "glob": "^10.3.10",
     "colors-console": "^1.0.3"
-  },
-  "devDependencies": {
-    "conventional-changelog-cli": "2.2.2"
   },
   "peerDependencies": {
     "vite": "^5.0.0 || ^6.0.0"
