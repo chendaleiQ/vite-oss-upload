@@ -2,13 +2,15 @@ import type { Plugin } from 'vite'
 
 export interface Options {
   dist: string
-  /** ali cloud oss region */
+  /** Cloud provider type. Default aliyun. Alias: cos -> tencent, obs -> huawei, ctyun/tianyi -> tianyiyun */
+  provider?: 'aliyun' | 'tencent' | 'huawei' | 'tianyiyun' | 'cos' | 'obs' | 'ctyun' | 'tianyi'
+  /** Object storage region */
   region: string
-  /** ali cloud oss accessKeyId */
+  /** Access key ID */
   accessKeyId: string
-  /** ali cloud oss accessKeySecret */
+  /** Access key secret */
   accessKeySecret: string
-  /** ali cloud oss bucket */
+  /** Bucket name */
   bucket: string
   /** If the file already exists, whether to skip upload. Default false */
   overwrite?: boolean
@@ -20,19 +22,21 @@ export interface Options {
   test?: boolean
   /** Enable vite-oss-upload plugin. Default true */
   enabled?: boolean
-  /** The temporary Security Token Service (STS) token used to access OSS. */
+  /** Temporary Security Token Service (STS) token */
   stsToken?: string
-  /** The endpoint that is used to access your OSS bucket. */
+  /** Endpoint for your object storage bucket. Required when provider is tianyiyun */
   endpoint?: string
-  /** Specifies whether to use the Alibaba Cloud internal network to access OSS. Default value: false. For example, set this parameter to true if you use an Elastic Compute Service (ECS) instance to access OSS. Access from an ECS instance uses an internal endpoint, which reduces costs */
+  /** For non-Aliyun providers: whether to force path-style endpoint addressing. */
+  forcePathStyle?: boolean
+  /** Aliyun OSS option: use internal network endpoint */
   internal?: boolean
-  /** Specifies whether a custom domain name can be used to access OSS. Default value: false. If you set cname to true, you must map a CNAME record to your bucket before you use the custom domain name to access the bucket. */
+  /** Aliyun OSS option: access bucket via CNAME */
   cname?: boolean
-  /** Specifies whether the pay-by-requester mode is enabled for your bucket. Default value: false. */
+  /** Aliyun OSS option: enable requester-pays */
   isRequestPay?: boolean
-  /** Specifies whether HTTPS is used to access OSS. A value of true indicates that HTTPS is used to access OSS. A value of false indicates that HTTP is used to access OSS. */
+  /** Aliyun OSS option: use HTTPS endpoint */
   secure?: boolean
-  /** The timeout period. Default value: 60000. Unit: milliseconds. */
+  /** Request timeout (ms). Default: 60000 */
   timeout?: string | number
 }
 

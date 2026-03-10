@@ -1,12 +1,12 @@
 {
   "name": "vite-oss-upload",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "author": {
     "name": "chendaleiQ",
     "email": "chendaleiQ@gmail.com",
     "url": "https://github.com/chendaleiQ"
   },
-  "description": "Upload the production files bundled in the project to Ali OSS",
+  "description": "Upload Vite build assets to Aliyun OSS, Tencent COS, Tianyi Cloud, and Huawei OBS",
   "homepage": "https://github.com/chendaleiQ/vite-oss-upload",
   "repository": {
     "type": "git",
@@ -26,6 +26,12 @@
       "import": "./index.js"
     }
   },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md",
+    "img.png"
+  ],
   "keywords": [
     "vite",
     "vite-plugin",
@@ -34,10 +40,18 @@
     "ali-oss",
     "aliyun",
     "aliyun-oss",
+    "cos",
+    "tencent-cos",
+    "obs",
+    "huawei-obs",
+    "ctyun",
+    "tianyi",
+    "tianyiyun",
     "upload",
     "cdn"
   ],
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.899.0",
     "ali-oss": "^6.19.0",
     "colors-console": "^1.0.3",
     "glob": "^10.3.10"
